@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de categorias</title>
+</head>
+<body>
+
+<h3>Lista de categorias</h3>
+<!--O $ foi definido no controller como a lista de categorias e para ler item por item esta sendo chamado por um foreach-->
+<table>
+	<tr>
+		<th>Nome</th>
+		<th>Situação</th>
+		<th>Ações</th>
+	</tr>
+
+	<tr th:each="cat : ${categorias}">
+	<td th:text="${cat.nome}"></td>
+	<td th:text="${cat.situacao}"></td>
+	<td><a th:href="|exibirCategoria?codigo=${cat.codigo}|">Alterar</td>
+	<td><a th:href="|excluirCategoria?codigo=${cat.codigo}|">Excluir</td>
+
+	</tr>
+</table>
+
+</body>
+</html>

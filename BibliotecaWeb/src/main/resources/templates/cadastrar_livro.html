@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca - Categorias</title>
+</head>
+<body>
+    <h1>Cadastro de livro</h1>
+    
+    <form action="/salvarLivro" method="POST" th:object="${livro}">
+    <input type= "hidden" th:field="*{codigo}"/>
+    Título: <input type="text" th:field="*{titulo}"> </br>
+    Autores: <input type="text" th:field="*{autores}"> </br>
+    Categoria:
+    <select th:field="*{categoria}">
+    	<option th:each="cat:${lista_categ}"
+    			th:value="${cat.codigo}"
+    			th:text="${cat.nome}"
+    	></option >
+    </select>
+    <button type="submit"> Salvar</button>
+    </form >
+    
+    <hr>
+    
+ <table>
+    <tr>
+	    <th>Titulo</th>
+	    <th>Autores</th>
+	    <th>Categoria</th>
+	    <th>Ações</th>
+    </tr>    
+    
+    <tr th:each="liv : ${lista_livros}">
+    	<td><a th:href="|exibirLivro?codigo=${liv.codigo}|"><span th:text="${liv.titulo}"></span></a></td>
+    	<td th:text="${liv.autores}"></td>
+    	<td th:text="${liv.categoria.nome}"></td>
+    	<td><a th:href="|excluirLivro?codigo=${liv.codigo}|">Excluir</a></td>
+    </tr>
+ </table>
+ 
+</body>
+</html>
